@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://1hkqnxwxawqd"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_w1xjv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_trfik"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ytstg"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3qeh"]
+albedo_color = Color(1, 0, 0.0156863, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ebwju"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxu0u"]
+albedo_color = Color(0.00999999, 0.00999999, 1, 1)
+
+[node name="player" type="Node3D"]
+script = ExtResource("1_w1xjv")
+
+[node name="head" type="Node3D" parent="."]
+
+[node name="cam" type="Camera3D" parent="head"]
+
+[node name="character" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="character"]
+shape = SubResource("BoxShape3D_trfik")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="character"]
+mesh = SubResource("BoxMesh_ytstg")
+surface_material_override/0 = SubResource("StandardMaterial3D_j3qeh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="character"]
+transform = Transform3D(3.82137e-16, -8.74228e-09, 0.2, -0.2, -8.74228e-09, -2.64698e-23, 8.74228e-09, -0.2, -8.74228e-09, 0, 0.225, -0.252)
+mesh = SubResource("PlaneMesh_ebwju")
+surface_material_override/0 = SubResource("StandardMaterial3D_cxu0u")
+
+[node name="ground" type="RayCast3D" parent="character"]
